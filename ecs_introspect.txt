@@ -1,0 +1,22 @@
+curl http://172.17.0.1:51678/v1/metadata
+{
+  "Cluster":"Production-Reserved",
+  "ContainerInstanceArn":"arn:aws:ecs:us-west-2:423839567833:container-instance/395f4d17-efd1-42cc-b35e-1c702044af5f",
+  "Version":"Amazon ECS Agent - v1.14.4 (f94beb4)"
+}
+
+curl http://172.17.0.1:51678/v1/tasks?dockerid=913bf5b6f9ac
+
+{
+"Arn":"arn:aws:ecs:us-west-2:423839567833:task/dc76738f-0d0c-43a4-bc87-ee10718ae3d4",
+"DesiredStatus":"RUNNING",
+"KnownStatus":"RUNNING",
+"Family":"bsft-event-triggered-segment",
+"Version":"15",
+"Containers":[
+  {"DockerId":"913bf5b6f9ac146434d04669315d2f03723751869d87213ab2c3127c33a2c65f",
+  "DockerName":"ecs-bsft-event-triggered-segment-15-bsft-event-triggered-segment-94ccb2c4cde4f8a8ba01",
+  "Name":"bsft-event-triggered-segment"}
+  ]
+}
+
