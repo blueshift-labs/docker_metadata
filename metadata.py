@@ -6,7 +6,7 @@ def ecs_inspect(docker_id):
     if os.environ.get('ECS_METADATA') != "true":
         return {}
     instance_metadata = ec2.ecs_instance_metadata()
-    ecs_local_container_metadata, task_metadata, , task_arn = ec2.get_local_container_info(docker_id)
+    ecs_local_container_metadata, task_metadata, task_arn = ec2.get_local_container_info(docker_id)
     ecs_metadata = {
         'Cluster': instance_metadata["Cluster"],
         'ContainerInstanceArn': instance_metadata["ContainerInstanceArn"],

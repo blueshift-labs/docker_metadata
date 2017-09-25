@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_json import FlaskJSON, JsonError, json_response, as_json
+import os
 
 app = Flask(__name__)
 FlaskJSON(app)
@@ -18,6 +19,6 @@ def inspect_api():
   return json_response(result=response, success=True)
 
 if __name__ == '__main__':
-  app.run(debug=False, host='0.0.0.0')
+  app.run(debug=False, host='0.0.0.0', port=os.environ.get('PORT', 34500))
 
-# docker run  -v /var/run/docker.sock:/var/run/docker.sock --net=host -p 5000:5000 -it 30f1816623d7 bash
+# docker run  -v /var/run/docker.sock:/var/run/docker.sock --net=host -p 5000:5000 -it  bash
