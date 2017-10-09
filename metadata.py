@@ -33,15 +33,20 @@ def port_mappings(ports_dict):
             mapping_arr.append(mapped)
     return mapping_arr
 
+def host_ip():
+    ip = os.environ.get('DOCKER_HOST_IP')
+    if ip is not None:        # Not running on ec2
+        return ip
+    return ec2.ec2_host_ip()
 
 def docker_inspect(docker_id):
     meta = m.get_docker_metadata(docker_id)
     docker_long_id = meta["Id"]
     config = meta["Config"]
     net = meta["NetworkSettings"]
-    host_ip = ec2.ec2_host_ip()
+    host_ip_addr = host_ip()
     docker_metadata = {
-        'HostIP': host_ip,
+        'HostIP': host_ip_addr,
         'Id': docker_long_id,
         'Image': config["Image"],
         'NetworkMode': meta["HostConfig"]["NetworkMode"],
